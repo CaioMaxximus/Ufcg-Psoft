@@ -1,0 +1,11 @@
+package com.example.classes;
+
+public class Greeting {
+	String name;
+	String greeting;
+	
+	public Greeting(String name, String greeting) {
+		this.greeting = greeting;
+		this.name = name;
+	}
+}

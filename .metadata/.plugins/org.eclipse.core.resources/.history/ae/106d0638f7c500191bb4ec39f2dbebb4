@@ -1,0 +1,15 @@
+package psoft.lab1.entities;
+
+public class Disciplina extends DisciplinaDTO {
+
+	int id;
+	
+	public Disciplina(String nome, double nota) {
+		super(nome, nota);
+		this.id = id;
+	}
+	
+	
+	
+
+}

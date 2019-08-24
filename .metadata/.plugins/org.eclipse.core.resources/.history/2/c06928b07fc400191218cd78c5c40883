@@ -1,0 +1,23 @@
+package com.example.Controllers;
+
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloControler {
+
+	@GetMapping("/hello")
+	public String hello(@RequestParam(name = "name",required = false,defaultValue = "World") String name,Model model){
+		model.addAttribute("name", name);
+		return "Hello " + name;
+	}
+	
+	@GetMapping("/soma")
+	public String potencia(@RequestParam(name = "num", required = false,defaultValue = "10")int num) {
+		int saida = num * num;
+		return "O resultado de " + num + " ao quadrado é: " + saida;
+	}
+	
+}

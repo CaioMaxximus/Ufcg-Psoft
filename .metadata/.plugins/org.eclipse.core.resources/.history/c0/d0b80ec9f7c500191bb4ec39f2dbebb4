@@ -1,0 +1,28 @@
+package psoft.lab1.services;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+import psoft.lab1.entities.Disciplina;
+import psoft.lab1.entities.DisciplinaDTO;
+@Service
+public class ServicesDisciplina {
+
+	Map<Integer, DisciplinaDTO> listaDisciplinas;
+	int id = 0;
+	
+	
+	public Disciplina addDisciplina(String nome,Double nota){
+		
+		Disciplina novaDisciplina = new Disciplina(nome, nota,this.id);
+		listaDisciplinas.put(this.id,novaDisciplina);
+		
+		return null;
+		
+		
+	}
+	
+}

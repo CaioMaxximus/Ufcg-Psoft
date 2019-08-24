@@ -1,0 +1,20 @@
+package psoft.lab1.disciplinaController;
+
+import org.apache.catalina.connector.Request;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import psoft.lab1.entities.Disciplina;
+import psoft.lab1.entities.DisciplinaDTO;
+
+@RestController
+public class Controller {
+	
+	@RequestMapping("/disciplinas")
+	public Disciplina addDisciplina( DisciplinaDTO disciplina) {
+		
+	}
+	
+	
+}

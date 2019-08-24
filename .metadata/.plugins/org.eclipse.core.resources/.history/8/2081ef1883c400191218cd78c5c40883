@@ -1,0 +1,6 @@
+package com.example.classes;
+
+public class Greeting {
+	String name;
+	String greeting;
+}

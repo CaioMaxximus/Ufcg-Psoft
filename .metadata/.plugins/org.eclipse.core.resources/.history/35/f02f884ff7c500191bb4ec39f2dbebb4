@@ -1,0 +1,16 @@
+package psoft.lab1.services;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+import psoft.lab1.entities.DisciplinaDTO;
+@Service
+public class ServicesDisciplina {
+
+	Map<Integer, DisciplinaDTO> lista = new HashMap<Integer, DisciplinaDTO>();
+	
+	
+}
