@@ -8,10 +8,10 @@
 		<version>2.1.7.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>labsPsoft</groupId>
-	<artifactId>lab1</artifactId>
+	<groupId>psoft.lab1</groupId>
+	<artifactId>lab1Psoft</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>helloWord-1</name>
+	<name>lab1Psoft</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
