@@ -26,6 +26,8 @@ public class FiltroToken extends GenericFilterBean {
 
 
 		public final static int TOKEN_INDEX = 7;
+
+		@Override
 		public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 				throws IOException, ServletException {
 

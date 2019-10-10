@@ -1,5 +1,6 @@
 package psoft.lab2.lab2.services;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -31,6 +32,11 @@ public class ServicesUsuario {
 	
 	public Optional<Usuario> getUsuario(String email) {
 		return usuariosDao.findById(email);
+	}
+
+	public Collection<Usuario> getUsuarios(){
+
+		return  usuariosDao.findAll();
 	}
 	
 	public boolean exist(Usuario usuario) {

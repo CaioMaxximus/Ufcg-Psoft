@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import psoft.lab2.lab2.entities.Usuario;
 import psoft.lab2.lab2.services.ServicesUsuario;
 
+import java.util.Collection;
+
 
 @RestController
 @RequestMapping("/usuarios")
@@ -24,6 +26,10 @@ public class ControllerUsuarios {
 	public ResponseEntity<Usuario> addUsuario(@RequestBody Usuario usuario){
 		return new ResponseEntity<Usuario>(usuariosService.addUsuario(usuario),HttpStatus.OK);
 	}
-	
+
+	@RequestMapping("/list")
+		public ResponseEntity<Collection<Usuario>>  getUsuarios(){
+			return  new ResponseEntity<Collection<Usuario>>(usuariosService.getUsuarios(),HttpStatus.OK);
+		}
 	
 }
