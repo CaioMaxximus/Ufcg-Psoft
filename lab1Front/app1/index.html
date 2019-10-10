@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang = "en">
+	<head>
+		<meta charset="utf-8">
+		<title>Lab1 Front</title>
+		<style type="text/css"></style>
+		<script type="module" src = "app.js"></script>
+		<style>
+			div{
+				text-align: center		
+			}
+			#send{
+				background-color: red;
+			}
+			#tabela{
+				overflow: auto;
+				height: 360px;
+			}
+			.left{
+				float: left;
+			}
+			.right{
+				float: right;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			
+			<h1>Sistemas de Disciplinas Ufcg</h1>
+
+		</div>
+		<hr>
+
+		<div id = "tabela"></div>
+
+		<table  align="center" cellpadding = "10" cellspacing = " 10" border="1">
+
+			<tr>
+				
+				<td>
+					<div id = "insercao" >
+						<h4>Adicionar Disciplna</h4>
+						<p>Nome Disciplina: <input id = "nome" type="text"></p>
+						<p>Nota Disciplina: <input id = "nota" type="text"></p>
+						<p>----</p>
+						<p><button id = "send"  style= "align-self: center">send!</button>
+						
+
+					</div>
+				<td>
+
+				<td>
+					<div id = "alterar" >
+						<h4>Alterar Disciplna</h4>
+						<p>Novo Nome Disciplina: <input id = "novo_nome" type="text"></p>
+						<p>Nova Nota Disciplina: <input id = "nova_nota" type="text"></p>
+						<p>ID Disciplina: <input id = "id" type="text"></p>
+						<p><button id = "set"  style= "align-self: center">send!</button>
+	
+					</div>
+				</td>
+
+
+			</tr>
+			
+
+
+		</table>
+
+
+
+	</body>
+</html>
