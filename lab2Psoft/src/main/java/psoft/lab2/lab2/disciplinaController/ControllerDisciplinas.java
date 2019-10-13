@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -53,7 +54,7 @@ public class ControllerDisciplinas {
 		}
 	}
 	
-	@PutMapping("/{id}/nome")
+	@PutMapping("/nome/{id}")
 	public ResponseEntity<Disciplina> setNomeDisciplina(@PathVariable("id") int id,@RequestBody Disciplina disciplina){
 		Optional<Disciplina> disciplinaSaida = services.setNomeDisciplina(id, disciplina);
 		if(!disciplinaSaida.isPresent()) {
@@ -63,7 +64,7 @@ public class ControllerDisciplinas {
 		}
 	}
 	
-	@PutMapping("/{id}/nota")
+	@PutMapping("/nota/{id}")
 	public ResponseEntity<Disciplina> setNotaDisciplina(@PathVariable("id") int id,@RequestBody Disciplina disciplina){
 		Optional<Disciplina> disciplinaSaida = services.setNotaDisciplina(id, disciplina);
 		if(!disciplinaSaida.isPresent()) {
@@ -89,9 +90,13 @@ public class ControllerDisciplinas {
 		return new ResponseEntity<Collection>(services.getDisciplinasOrdenadas(),HttpStatus.OK);
 	}
 	
-	@PutMapping("/{id}/likes")
+	@PutMapping("/likes/{id}")
 	public ResponseEntity<Disciplina> addLike(@PathVariable("id")int id){
-		return new ResponseEntity<Disciplina>(services.addLikes(id).get(),HttpStatus.OK);
+		Optional<Disciplina> resposta = services.addLikes(id);
+		if(resposta.isPresent()) {
+			return new ResponseEntity<Disciplina>(services.addLikes(id).get(),HttpStatus.OK);
+		}
+		return new ResponseEntity<Disciplina>(services.addLikes(id).get(),HttpStatus.NOT_FOUND);
 	}
 	
 

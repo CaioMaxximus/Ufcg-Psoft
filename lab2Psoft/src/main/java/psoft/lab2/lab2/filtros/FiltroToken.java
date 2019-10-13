@@ -30,9 +30,8 @@ public class FiltroToken extends GenericFilterBean {
 		@Override
 		public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 				throws IOException, ServletException {
-
+			((HttpServletRequest) request).getRequestURL();   
 			HttpServletRequest req = (HttpServletRequest) request;
-
 			String header = req.getHeader("Authorization");
 
 			if (header == null || !header.startsWith("Bearer ")) {
