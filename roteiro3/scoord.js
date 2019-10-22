@@ -1,6 +1,7 @@
 exports.disciplina = disciplina;
 exports.turma = turma;
 exports.estudante = estudante;
+exports.professor = professor;
 let assert = require('assert');
 
 
@@ -50,6 +51,7 @@ function turma(_disciplina, _periodo){
         get_disciplina : () => disciplina,
         get_status : () => status,
         get_periodo : () => periodo,
+        set_professor : (_professor) => professor = _professor,
         matricular_aluno : (_aluno) => matricula_novo(_aluno),
         desmatricular_aluno: (_aluno) => 
             estudantes = estudantes.filter(function(value){
@@ -59,20 +61,21 @@ function turma(_disciplina, _periodo){
     }    
 }
 
-function professor(_matricula, _nome,_email,_cpf){
+function professor(_matricula, _nome,_email,_cpf,_url_foto){
     let matricula = _matricula;
     let nome = _nome;
     let email = _email;
     let cpf = _cpf;
     let turmas = [];
+    let url_foto = _url_foto;
     return{
         get_nome : () => nome,
-        set_nome : (novo_nome) => nome = novo_nome,
         get_email : () => email ,
         get_cpf : () => cpf,
         get_foto : () => url_foto,
+        set_foto : (_url_foto) => url_foto = _url_foto,
         get_matricula : () => matricula,
-        aloca_turma: (turma) => turmas.push(turma),
+        aloca_turma: function(turma) { turma.set_professor(this); turmas.push(turma)},
         turmas: function (semestre) {
                     let saida = [];
                     turmas.forEach(turma => {
@@ -89,29 +92,42 @@ function professor(_matricula, _nome,_email,_cpf){
 
 
 function estudante(_nome,_matricula,_email,_cpf){
+    let nome = _nome;
     let matricula = _matricula;
     let email = _email;
     let cpf = _cpf;
     let url_foto = "Sem Foto";
+    let turmas = [];
     return {
         get_nome : () => nome,
         set_nome : (novo_nome) => nome = novo_nome,
-        matricula: (turma) => turma.matricular_aluno(self),
+        matricula: (turma) => turma.matricular_aluno(this),
         get_email : () => email ,
         get_cpf : () => cpf,
         get_foto : () => url_foto,
-        get_matricula: () => matricula
+        get_matricula: () => matricula,
+        matricula : (turma) => {turmas.push(turma),turma.matricular_aluno(this)}, 
+        turmas : (semestre) => {
+            let saida = [];
+            turmas.forEach(turma => {
+                if (turma.get_periodo() == semestre){
+                    saida.push(turma.get_disciplina());
+                }
+            });
+            return saida;
+        },
     };
 }
 
 
 
 
-let d = disciplina("prog","programa1",4,[]);
-let turm_1 = turma(d ,2);
-let estud_1 = estudante("caio","117210","@gmail.com","123123-1");
-turm_1.matricular_aluno(estud_1);
-let professor1 = professor("123","einstein","@gmail","11-11");
-professor1.aloca_turma(turm_1);
-console.log(d === d);
+// let d = disciplina("prog","programa1",4,[]);
+// let t0 = turma(d ,"2");
+// let e0 = estudante("caio","117210","@gmail.com","123123-1");
+// t0.matricular_aluno(e0);
+// let p0 = professor("123","einstein","@gmail","11-11");
+// p0.aloca_turma(t0);
+// console.log(p0.turmas("2"));
+// console.log(d === d);
 

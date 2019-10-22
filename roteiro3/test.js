@@ -3,6 +3,7 @@ let scoord = require('./scoord');
 let disciplina = scoord.disciplina;
 let turma = scoord.turma;
 let estudante = scoord.estudante;
+let professor = scoord.professor 
 
 describe('factory Disciplina', function() {
   let d0;
@@ -47,15 +48,13 @@ describe('factory Disciplina', function() {
 describe('factory turma',function (){
     let d0;
     let d1;
-    let d2;
     let t0;
     let e0;
 
     before(async () => {
         d0 = disciplina('calc1',"calculo1",4,[]);
         d1 = disciplina("calc2",'calculo2',4,[]);
-        d2 = disciplina("calc3",'calculo3',4,[]);
-        e0 = estudante("caio",117210,"@seila","123");
+        e0 = estudante("caio","117210","@seila","123");
         t0 = turma(d0,"2");
     })
 
@@ -90,5 +89,79 @@ describe('factory turma',function (){
 
 
 describe('factory professor', function(){
+    let p0;
     
+    before(async () => {
+        p0 = professor("123","jerson","@gmail","321-1","www");
+
+    });
+
+    it('deve criar professores distintos',function(){
+        p1 = professor("123","jerson","@gmail","321-1","www");
+        assert.notEqual(p0,p1);
+    });
+
+    it ('dados de inicializacao corretos',function(){
+        assert.equal(p0.get_nome(),"jerson");
+        assert.equal(p0.get_matricula(),"123");
+        assert.equal(p0.get_email(),"@gmail");
+        assert.equal(p0.get_cpf(),"321-1");
+        assert.equal(p0.get_foto(),"www");
+    });
+
+    it('deve ser vinculado a uma ou mais turmas',function(){
+        let d0 = disciplina('prog1', 'ProgramaÃ§Ã£o 1', 4, []);
+        let t0 = turma(d0,"1");
+        p0.aloca_turma(t0);
+        assert.equal(p0.turmas("1")[0],d0);
+        assert.equal(t0.get_professor(),p0);
+    })
+
+    it('nao deve permitir setar nem o nome nem a matricula',function(){
+        assert.throws(function () {
+            p0.set_nome('outro');
+            p0.set_matricula("2001");
+        }, TypeError);
+        assert.equal(p0.get_nome(),"jerson");
+        assert.equal(p0.get_matricula(),"123");
+    })
 });
+
+
+describe('factory estudante',function(){
+    let e0;
+
+    before(async () =>{
+        e0 = estudante("caio","117210","@seila","123");
+    });
+    it('deve criar estudantes distintos',function(){
+        e1 = estudante("caio","117210","@seila","123");
+        e2 = estudante("caio","117210","@seila","123");
+        assert.notEqual(e0,e1);
+        assert.notEqual(e1,e2);
+        assert.notEqual(e2,e0);
+    });
+
+    it('dados de inicializacao corretos',function(){
+        assert.equal(e0.get_nome(),"caio");
+        assert.equal(e0.get_matricula(),"117210");
+        assert.equal(e0.get_email(),"@seila");
+        assert.equal(e0.get_cpf(),"123");
+
+
+    });
+
+    it('deve poder se matricular em varias turmas ',function(){
+        d0 = disciplina('calc1',"calculo1",4,[]);
+        d1 = disciplina('calc2',"calculo2",4,[]);
+        t0 = turma(d0,"2");
+        t1 = turma(d1,"3");
+        e0.matricula(t0);
+        e0.matricula(t1);
+        assert.equal(e0.turmas("2")[0],d0);
+        assert.equal(e0.turmas("3")[0],d1);
+
+    })
+});
+
+
